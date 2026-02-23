@@ -1,0 +1,80 @@
+@page
+@model DapperCrudTutorial.Pages.Account.LoginModel
+@{
+    Layout = "_LoginLayout";
+}
+
+<div class="card shadow-lg" style="width: 100%; max-width: 420px; border-radius: 16px; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.12);">
+    <div class="card-body p-5">
+        <div class="text-center mb-4">
+            <div style="font-size: 3rem;">&#128293;</div>
+            <h4 class="fw-bold text-white mt-2">SuperHero Yönetimi</h4>
+            <p class="text-white-50 small">Devam etmek için giriş yapın</p>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger d-flex align-items-center gap-2 py-2" role="alert">
+                <span>&#9888;</span>
+                <span>@Model.ErrorMessage</span>
+            </div>
+        }
+
+        <form method="post">
+            <div class="mb-3">
+                <label asp-for="Input.Username" class="form-label text-white-50 small fw-semibold">KULLANICI ADI</label>
+                <div class="input-group">
+                    <span class="input-group-text" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.6);">&#128100;</span>
+                    <input asp-for="Input.Username"
+                           class="form-control"
+                           placeholder="Kullanıcı adınız"
+                           autocomplete="username"
+                           style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: white;" />
+                </div>
+                <span asp-validation-for="Input.Username" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Input.Password" class="form-label text-white-50 small fw-semibold">ŞİFRE</label>
+                <div class="input-group">
+                    <span class="input-group-text" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.6);">&#128274;</span>
+                    <input asp-for="Input.Password"
+                           id="passwordInput"
+                           class="form-control"
+                           placeholder="Şifreniz"
+                           autocomplete="current-password"
+                           style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: white;" />
+                    <button type="button" class="input-group-text"
+                            onclick="togglePassword()"
+                            style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); cursor: pointer;">
+                        <span id="eyeIcon">&#128065;</span>
+                    </button>
+                </div>
+                <span asp-validation-for="Input.Password" class="text-danger small"></span>
+            </div>
+
+            <button type="submit" class="btn btn-lg w-100 fw-semibold"
+                    style="background: linear-gradient(90deg, #6a11cb, #2575fc); border: none; color: white; border-radius: 10px; letter-spacing: 0.5px;">
+                Giriş Yap
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function togglePassword() {
+            var input = document.getElementById('passwordInput');
+            var icon = document.getElementById('eyeIcon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.innerHTML = '&#128064;';
+            } else {
+                input.type = 'password';
+                icon.innerHTML = '&#128065;';
+            }
+        }
+        // Auto-focus on username
+        document.querySelector('input[name="Input.Username"]')?.focus();
+    </script>
+}

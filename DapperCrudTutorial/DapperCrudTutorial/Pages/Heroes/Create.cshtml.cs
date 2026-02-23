@@ -1,10 +1,12 @@
 using DapperCrudTutorial.Data;
 using DapperCrudTutorial.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DapperCrudTutorial.Pages.Heroes
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly ISuperHeroRepository _repository;

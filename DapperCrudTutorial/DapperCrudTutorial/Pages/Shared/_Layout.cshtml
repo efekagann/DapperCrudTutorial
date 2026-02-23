@@ -15,11 +15,18 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navMenu">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" asp-page="/Heroes/Index">Kahramanlar</a>
                     </li>
                 </ul>
+                @if (User.Identity!.IsAuthenticated)
+                {
+                    <span class="navbar-text me-3">&#128100; @User.Identity.Name</span>
+                    <form method="post" asp-page="/Account/Logout">
+                        <button type="submit" class="btn btn-outline-light btn-sm">Çıkış</button>
+                    </form>
+                }
             </div>
         </div>
     </nav>

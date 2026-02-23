@@ -17,7 +17,7 @@ namespace DapperCrudTutorial.Models
         public string FirstName { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Soyad zorunludur.")]
-        [StringLength(50, ErrorMessage = "Soyad en fazla 50 karakter olabilir.")]
+        [StringLength(100, ErrorMessage = "Soyad en fazla 100 karakter olabilir.")]
         [Display(Name = "Soyad")]
         public string LastName { get; set; } = string.Empty;
 

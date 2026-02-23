@@ -1,9 +1,11 @@
 using DapperCrudTutorial.Data;
 using DapperCrudTutorial.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DapperCrudTutorial.Pages.Heroes
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly ISuperHeroRepository _repository;
