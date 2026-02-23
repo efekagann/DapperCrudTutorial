@@ -1,0 +1,50 @@
+@page
+@model DapperCrudTutorial.Pages.Heroes.IndexModel
+@{
+    ViewData["Title"] = "Kahramanlar";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Süper Kahramanlar</h2>
+    <a asp-page="Create" class="btn btn-success">+ Yeni Kahraman</a>
+</div>
+
+@if (!Model.Heroes.Any())
+{
+    <div class="alert alert-info">Henüz kaydedilmiş kahraman yok. Yeni bir tane ekleyin!</div>
+}
+else
+{
+    <div class="card">
+        <div class="card-body p-0">
+            <table class="table table-hover hero-table mb-0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Kahraman Adı</th>
+                        <th>Ad</th>
+                        <th>Soyad</th>
+                        <th>Şehir / Yer</th>
+                        <th class="text-center">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var hero in Model.Heroes)
+                    {
+                        <tr>
+                            <td>@hero.Id</td>
+                            <td><strong>@hero.Name</strong></td>
+                            <td>@hero.FirstName</td>
+                            <td>@hero.LastName</td>
+                            <td>@hero.Place</td>
+                            <td class="text-center">
+                                <a asp-page="Edit" asp-route-id="@hero.Id" class="btn btn-sm btn-primary btn-action me-1">Düzenle</a>
+                                <a asp-page="Delete" asp-route-id="@hero.Id" class="btn btn-sm btn-danger btn-action">Sil</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

@@ -1,0 +1,43 @@
+@page "{id:int}"
+@model DapperCrudTutorial.Pages.Heroes.DeleteModel
+@{
+    ViewData["Title"] = "Kahramanı Sil";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card border-danger">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0">Kahramanı Sil</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning">
+                    <strong>Dikkat!</strong> Bu işlem geri alınamaz.
+                </div>
+
+                <dl class="row">
+                    <dt class="col-sm-4">Kahraman Adı</dt>
+                    <dd class="col-sm-8">@Model.Hero.Name</dd>
+
+                    <dt class="col-sm-4">Ad</dt>
+                    <dd class="col-sm-8">@Model.Hero.FirstName</dd>
+
+                    <dt class="col-sm-4">Soyad</dt>
+                    <dd class="col-sm-8">@Model.Hero.LastName</dd>
+
+                    <dt class="col-sm-4">Şehir / Yer</dt>
+                    <dd class="col-sm-8">@Model.Hero.Place</dd>
+                </dl>
+
+                <p class="text-danger fw-bold">Bu kahramanı silmek istediğinize emin misiniz?</p>
+
+                <form method="post">
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-danger">Evet, Sil</button>
+                        <a asp-page="Index" class="btn btn-secondary">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
